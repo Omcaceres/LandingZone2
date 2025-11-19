@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orión - Landing Zone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            outline: none;
+        }
+
+        .search-box::after {
+            content: "🔍";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .categories {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .category {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category h2 {
+            color: #667eea;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .link-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .link-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .link-card .label {
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                margin-bottom: 25px;
+                padding: 15px;
+            }
+
+            .category {
+                padding: 20px 15px;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 12px;
+            }
+
+            .link-card {
+                padding: 15px;
+                min-height: 100px;
+            }
+
+            .link-card .icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-box {
+                margin-bottom: 20px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Orión Landing Zone</h1>
+            <p class="subtitle">Portal de acceso rápido</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar plataforma...">
+        </div>
+
+        <div class="categories">
+            <!-- Aplicaciones Principales -->
+            <div class="category">
+                <h2>📱 Aplicaciones Principales</h2>
+                <div class="links-grid">
+                    <a href="https://www.portal.orion.global/web/login" class="link-card" data-search="odoo">
+                        <div class="icon">📊</div>
+                        <div class="label">Odoo</div>
+                    </a>
+                    <a href="https://sites.google.com/orion.global/intranet/inicio" class="link-card" data-search="intranet">
+                        <div class="icon">🏢</div>
+                        <div class="label">Intranet</div>
+                    </a>
+                    <a href="https://hub.orion.global/" class="link-card" data-search="hub">
+                        <div class="icon">🔗</div>
+                        <div class="label">Hub</div>
+                    </a>
+                    <a href="https://www.cloudaltio.com/" class="link-card" data-search="cloudaltio">
+                        <div class="icon">☁️</div>
+                        <div class="label">CloudAltio</div>
+                    </a>
+                    <a href="https://market.orion.global/" class="link-card" data-search="marketplace">
+                        <div class="icon">🛒</div>
+                        <div class="label">Marketplace</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recursos Humanos -->
+            <div class="category">
+                <h2>👥 Recursos Humanos</h2>
+                <div class="links-grid">
+                    <a href="https://orion.buk.cl/" class="link-card" data-search="buk chile">
+                        <div class="icon">🇨🇱</div>
+                        <div class="label">Buk Chile</div>
+                    </a>
+                    <a href="https://orion.buk.pe/" class="link-card" data-search="buk peru">
+                        <div class="icon">🇵🇪</div>
+                        <div class="label">Buk Perú</div>
+                    </a>
+                    <a href="https://app.ctrlit.cl/ctrl" class="link-card" data-search="buk asistencia">
+                        <div class="icon">⏰</div>
+                        <div class="label">Buk Asistencia</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Google Workspace -->
+            <div class="category">
+                <h2>🌐 Google Workspace</h2>
+                <div class="links-grid">
+                    <a href="https://gemini.google.com" class="link-card" data-search="gemini">
+                        <div class="icon">✨</div>
+                        <div class="label">Gemini</div>
+                    </a>
+                    <a href="https://notebooklm.google.com/" class="link-card" data-search="notebooklm">
+                        <div class="icon">📓</div>
+                        <div class="label">NotebookLM</div>
+                    </a>
+                    <a href="https://mail.google.com/" class="link-card" data-search="gmail">
+                        <div class="icon">✉️</div>
+                        <div class="label">Gmail</div>
+                    </a>
+                    <a href="https://chat.google.com/" class="link-card" data-search="chat">
+                        <div class="icon">💬</div>
+                        <div class="label">Chat</div>
+                    </a>
+                    <a href="https://drive.google.com/drive/home" class="link-card" data-search="drive">
+                        <div class="icon">📁</div>
+                        <div class="label">Drive</div>
+                    </a>
+                    <a href="https://calendar.google.com/" class="link-card" data-search="calendar">
+                        <div class="icon">📅</div>
+                        <div class="label">Calendar</div>
+                    </a>
+                    <a href="https://contacts.google.com/" class="link-card" data-search="contactos">
+                        <div class="icon">👤</div>
+                        <div class="label">Contactos</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cloud & Management -->
+            <div class="category">
+                <h2>☁️ Cloud & Management</h2>
+                <div class="links-grid">
+                    <a href="https://app.ninety.io/" class="link-card" data-search="ninety">
+                        <div class="icon">🎯</div>
+                        <div class="label">Ninety</div>
+                    </a>
+                    <a href="https://accounts.google.com/o/saml2/initsso?idpid=C00mcia9i&spid=208452347108&forceauthn=false" class="link-card" data-search="aws amazon">
+                        <div class="icon">🟠</div>
+                        <div class="label">AWS</div>
+                    </a>
+                    <a href="https://console.cloud.google.com" class="link-card" data-search="gcp google cloud">
+                        <div class="icon">🔵</div>
+                        <div class="label">GCP</div>
+                    </a>
+                    <a href="https://partner.microsoft.com/dashboard/v2/home" class="link-card" data-search="azure microsoft">
+                        <div class="icon">🔷</div>
+                        <div class="label">Azure</div>
+                    </a>
+                    <a href="https://sites.google.com/orion.global/turnosopc" class="link-card" data-search="turnos opc">
+                        <div class="icon">🔄</div>
+                        <div class="label">Turnos OPC</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Soporte Técnico -->
+            <div class="category">
+                <h2>🔧 Soporte Técnico</h2>
+                <div class="links-grid">
+                    <a href="https://mycase.cloudapps.cisco.com/case" class="link-card" data-search="cisco">
+                        <div class="icon">🌐</div>
+                        <div class="label">Cisco</div>
+                    </a>
+                    <a href="https://www.mysonicwall.com/muir/login" class="link-card" data-search="sonicwall">
+                        <div class="icon">🛡️</div>
+                        <div class="label">SonicWall</div>
+                    </a>
+                    <a href="https://proofpointcommunities.force.com/community/s/" class="link-card" data-search="proofpoint">
+                        <div class="icon">🔒</div>
+                        <div class="label">ProofPoint</div>
+                    </a>
+                    <a href="https://support.fortinet.com/welcome/#/" class="link-card" data-search="fortinet">
+                        <div class="icon">🔐</div>
+                        <div class="label">Fortinet</div>
+                    </a>
+                    <a href="https://support.elastic.co/" class="link-card" data-search="elastic">
+                        <div class="icon">🔍</div>
+                        <div class="label">Elastic</div>
+                    </a>
+                    <a href="https://partner.trendmicro.com/en-US/" class="link-card" data-search="trendmicro trend">
+                        <div class="icon">🦠</div>
+                        <div class="label">TrendMicro</div>
+                    </a>
+                    <a href="https://sso.paloaltonetworks.com/login/login.htm" class="link-card" data-search="paloalto">
+                        <div class="icon">🔥</div>
+                        <div class="label">PaloAlto</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const linkCards = document.querySelectorAll('.link-card');
+        const categories = document.querySelectorAll('.category');
+
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+
+            categories.forEach(category => {
+                const cards = category.querySelectorAll('.link-card');
+                let visibleCards = 0;
+
+                cards.forEach(card => {
+                    const searchText = card.getAttribute('data-search') + ' ' + card.textContent.toLowerCase();
+                    if (searchText.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                        visibleCards++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Hide category if no visible cards
+                if (visibleCards === 0) {
+                    category.classList.add('hidden');
+                } else {
+                    category.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
